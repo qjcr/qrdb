@@ -6,24 +6,31 @@ class Building(models.Model):
 
 class Staircase(models.Model):
     name = models.CharField(max_length=50, primary_key=True)
-    building = models.ForeignKey(Staircase, on_delete=models.PROTECT)
+    building = models.ForeignKey(Building, on_delete=models.PROTECT)
 
 class Room(models.Model):
     name = models.CharField(max_length=50, primary_key=True)
     staircase = models.ForeignKey(Staircase, on_delete=models.PROTECT)
+    floor = models.CharField(max_length=1)
+
+    view = models.CharField(max_length=20, blank=True)
+    room_type = models.CharField(max_length=25, blank=True)
+
+    bathroom = models.CharField(max_length=25, blank=True) # One of ['Shared', 'En-suite', 'Private']
 
 class User(models.Model):
     crsid = models.CharField(max_length=10, primary_key=True)
     name = models.CharField(max_length=50)
     register_time = models.DateTimeField()
 
-class Year(models.Model):
-    name = models.CharField(max_length=50)
+# class Year(models.Model):
+#     name = models.CharField(max_length=50)
 
 # Reviews made between 2007 and 2014
 class Review_v1(models.Model):
     crsid = models.CharField(max_length=10)
-    year = models.ForeignKey(Year, on_delete=models.PROTECT)
+    # year = models.ForeignKey(Year, on_delete=models.PROTECT)
+    year = models.CharField(max_length=20)
     room = models.ForeignKey(Room, on_delete=models.PROTECT)
 
     number = models.IntegerField() # no idea what this is
@@ -32,26 +39,28 @@ class Review_v1(models.Model):
     bathroom = models.IntegerField()
     kitchen = models.IntegerField()
     noise = models.IntegerField()
+
     comments = models.TextField(blank=True)
     rentcomment = models.TextField(blank=True)
 
     rent_vary = models.IntegerField()
     light = models.IntegerField()
     furniture = models.IntegerField()
+    
     moderated = models.BooleanField()
 
     class Meta:
         unique_together = ('crsid', 'room')
 
 # New reviews
-class Review_v2(models.Model):
-    user = models.ForeignKey(User, on_delete=models.PROTECT)
-    year = models.ForeignKey(Year, on_delete=models.PROTECT)
-    room = models.ForeignKey(Room, on_delete=models.PROTECT)
-    year 
+# class Review_v2(models.Model):
+#     user = models.ForeignKey(User, on_delete=models.PROTECT)
+#     year = models.ForeignKey(Year, on_delete=models.PROTECT)
+#     room = models.ForeignKey(Room, on_delete=models.PROTECT)
+#     year 
 
-    # todo...
-    class Meta:
-        unique_together = ('crsid', 'room')
+#     # todo...
+#     class Meta:
+#         unique_together = ('crsid', 'room')
 
 
