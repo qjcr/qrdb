@@ -28,12 +28,13 @@ class User(models.Model):
 
 # Reviews made between 2007 and 2014
 class Review_v1(models.Model):
+    old_id = models.IntegerField()
     crsid = models.CharField(max_length=10)
     # year = models.ForeignKey(Year, on_delete=models.PROTECT)
     year = models.CharField(max_length=20)
     room = models.ForeignKey(Room, on_delete=models.PROTECT)
 
-    number = models.IntegerField() # no idea what this is
+    # number = models.IntegerField() # no idea what this is
     storage = models.IntegerField()
     size = models.IntegerField()
     bathroom = models.IntegerField()
@@ -49,8 +50,8 @@ class Review_v1(models.Model):
     
     moderated = models.BooleanField()
 
-    class Meta:
-        unique_together = ('crsid', 'room')
+    # class Meta:
+        # unique_together = ('crsid', 'room')
 
 # New reviews
 # class Review_v2(models.Model):
