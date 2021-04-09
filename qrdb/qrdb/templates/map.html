@@ -1,0 +1,23 @@
+{% include "includes/header.html" %}
+{% include "includes/navbar.html" %}
+
+<div class="content-wrapper">
+  {% for building in buildings %}
+    <div class="building">
+      <h2>{{ building.name }}</h2>
+        <div class="card-group">
+          {% for staircase in building.staircase_set.all %}
+            <a href="/staircase/{{ staircase.name}}">
+              <div class="card-wrapper">
+                <p class="card-heading">Staircase {{ staircase.name }}</p>
+                <p>Information about staircase:</p>
+                <p>no. rooms: 16</p>
+                <p>rent price range: £1000-£2000</p>
+                <p>etc.</p>
+              </div>
+            </a>
+          {% endfor %}
+        </div>
+      </div>
+    {% endfor %}
+</div>
