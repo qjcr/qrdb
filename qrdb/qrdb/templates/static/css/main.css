@@ -110,7 +110,11 @@ nav .nav-title {
 }
 
 /* Map */
-
 .building, .room-list {
   margin: 40px 0;
+}
+
+/* Room */
+.review {
+  margin: 20px 0;
 }
