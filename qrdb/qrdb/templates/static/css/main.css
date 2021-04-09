@@ -1,5 +1,54 @@
+/* Global styles */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+h2 {
+  font-weight: 700;
+  font-size: 1.6rem;
+}
+
+/* Layout */
+.content-wrapper {
+  width: 60vw;
+  margin: auto;
+}
+
+/* Components */
+.card-group {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 20px;
+  row-gap: 20px;
+}
+
+.card-group a {
+  text-decoration: none;
+}
+
+.card-wrapper {
+  border-radius: 2px;
+  /* border: 1px #cccccc solid; */
+  border-top: #1a7d56 4px solid;
+  box-shadow: 0 0.5em 1em -0.125em rgba(10,10,10,0.1),0 0px 0 1px rgba(10,10,10,0.02);
+  padding: 10px 20px;
+  color: #212529;
+}
+
+.card-wrapper p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.card-wrapper .card-heading {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+/* Map */
+
+.building {
+  margin: 40px 0;
 }

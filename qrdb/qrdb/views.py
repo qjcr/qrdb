@@ -12,7 +12,7 @@ def view_map(request):
     print(request.user)
     feed_dict = {}
     feed_dict['buildings'] = models.Building.objects.all()
-    return render(request, "test.html", feed_dict)
+    return render(request, "map.html", feed_dict)
 
 @login_required
 def view_staircase(request, staircase_name):
