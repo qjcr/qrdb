@@ -21,6 +21,7 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path(r'', include('ucamwebauth.urls')),
+    # path('logout/', views.logout_view),
 
     path('', views.index),
     path('map/', views.view_map),
