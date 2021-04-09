@@ -17,6 +17,24 @@ h2 {
   margin: auto;
 }
 
+@media screen and (max-width: 1200px) {
+  .content-wrapper {
+    width: 70vw;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .content-wrapper {
+    width: 80vw;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .content-wrapper {
+    width: 90vw;
+  }
+}
+
 /* Navbar */
 nav {
   background-color: #1a7d56;
@@ -37,9 +55,33 @@ nav .nav-title {
 /* Components */
 .card-group {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   column-gap: 20px;
   row-gap: 20px;
+}
+
+@media screen and (max-width: 1600px) {
+  .card-group {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .card-group {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .card-group {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .card-group {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
 
 .card-group a {
