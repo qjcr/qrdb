@@ -21,9 +21,9 @@
                   {% if room.get_review_count == 0 %}
                   <p class="no-reviews">No reviews</p>
                   {% elif room.get_review_count == 1 %}</p>
-                  <p>1 review</p>
+                  <p>1 review {% if room.reviews_have_comments %}💬{% endif %}</p>
                   {% else %}
-                  <p>{{ room.get_review_count }} reviews</p>
+                  <p>{{ room.get_review_count }} reviews {% if room.reviews_have_comments %}💬{% endif %}</p>
                   {% endif %}
                 </div>
               </a>
@@ -31,4 +31,9 @@
           </div>
         {% endfor %}
       </div>
+
+      <p>Rooms that have written reviews show 💬, and rooms with photos show 📷.</p>
+      <br><br>
 </div>
+
+{% include "includes/footer.html" %}

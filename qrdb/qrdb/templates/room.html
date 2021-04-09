@@ -23,7 +23,7 @@
               {% if review.comments %}
               <br>
               <p><b>Other comments:</b></p>
-              <p>{{ review.comments }}</p>
+              <p>{{ review.comments|linebreaksbr }}</p>
               {% endif %}
               
               <!-- <p class="card-heading"> {{ review.year }}</p>

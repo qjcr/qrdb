@@ -25,6 +25,9 @@ class Room(models.Model):
         # TODO: Update this for reviews v2
         return len(self.review_v1_set.all())
 
+    def reviews_have_comments(self):
+        return any([r.comments for r in self.review_v1_set.all()])
+
 class User(models.Model):
     crsid = models.CharField(max_length=10, primary_key=True)
     name = models.CharField(max_length=50)
