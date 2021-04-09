@@ -40,16 +40,27 @@ nav {
   background-color: #1a7d56;
   color: #fff;
   padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
 }
 
 nav a {
   text-decoration: none;
   color: inherit;
-  
+  padding: 0 10px; 
 }
 
 nav .nav-title {
   font-size: 1.4rem;
+}
+
+nav .nav-right, nav .nav-left {
+  display: flex;
+  align-items: center;
+}
+
+nav .nav-right {
+  float: right;
 }
 
 /* Components */

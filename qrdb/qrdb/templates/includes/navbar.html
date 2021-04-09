@@ -1,6 +1,14 @@
 
 <nav class="">
-  <a class="nav-title" href="/">Queens' JCR Room Database</a>
-  <a href="/accounts/logout">Logout</a>
-  <a><b>{{ request.user }}</b></a>
+  <div class="nav-left">
+    <a class="nav-title" href="/">Queens' JCR Room Database</a>
+  </div>
+  <div class="nav-right">
+    {% if request.user.is_authenticated %}
+      <a class="">Signed in as: <b>{{ request.user }}</b></a>
+      <a class="" href="/accounts/logout">Logout 🡆</a>
+    {% else %}
+      <a class="" href="/accounts/login">Login 🡆</a>
+    {% endif %}
+  </div>  
 </nav>
