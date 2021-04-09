@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from . import models
 
 def index(request):
-    return render(request, "test.html")
+    return render(request, "index.html")
 
 @login_required
 def view_map(request):

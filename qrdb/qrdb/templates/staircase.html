@@ -15,7 +15,16 @@
                   <p>Floor: <b>{{ room.floor }}</b></p>
                   <p>View: <b>{{ room.view }}</b></p>
                   <p>Type: <b>{{ room.room_type }}</b></p>
-                  <p>Bathroom: <b>{{ room.bathroom }}</b></p>
+                  <p>BR: <b>{{ room.bathroom }}</b></p>
+
+                  <br>
+                  {% if room.get_review_count == 0 %}
+                  <p class="no-reviews">No reviews</p>
+                  {% elif room.get_review_count == 1 %}</p>
+                  <p>1 review</p>
+                  {% else %}
+                  <p>{{ room.get_review_count }} reviews</p>
+                  {% endif %}
                 </div>
               </a>
               {% endfor %}

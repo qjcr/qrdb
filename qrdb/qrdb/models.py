@@ -8,6 +8,9 @@ class Staircase(models.Model):
     name = models.CharField(max_length=50, primary_key=True)
     building = models.ForeignKey(Building, on_delete=models.PROTECT)
 
+    def get_room_count(self):
+        return len(self.room_set.all())
+
 class Room(models.Model):
     name = models.CharField(max_length=50, primary_key=True)
     staircase = models.ForeignKey(Staircase, on_delete=models.PROTECT)
@@ -17,6 +20,10 @@ class Room(models.Model):
     room_type = models.CharField(max_length=25, blank=True)
 
     bathroom = models.CharField(max_length=25, blank=True) # One of ['Shared', 'En-suite', 'Private']
+
+    def get_review_count(self):
+        # TODO: Update this for reviews v2
+        return len(self.review_v1_set.all())
 
 class User(models.Model):
     crsid = models.CharField(max_length=10, primary_key=True)

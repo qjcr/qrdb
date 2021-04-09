@@ -10,10 +10,7 @@
             <a href="/staircase/{{ staircase.name}}">
               <div class="card">
                 <p class="card-heading">Staircase {{ staircase.name }}</p>
-                <p>Information about staircase:</p>
-                <p>no. rooms: 16</p>
-                <p>rent price range: £1000-£2000</p>
-                <p>etc.</p>
+                <p>{{ staircase.get_room_count }} rooms</p>
               </div>
             </a>
           {% endfor %}
