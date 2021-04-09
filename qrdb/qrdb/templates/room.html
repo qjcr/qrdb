@@ -5,19 +5,35 @@
 
     <div class="room-list">
       <h2>{{ room.name }}</h2>
-      <div class="card-group">
         {% for review in reviews_v1 %}
                 <div class="card">
-                  <p class="card-heading"> {{ review.year }}</p>
+                  <p><b>Resident {{ review.year }}</b></p>
+                  <p>Storage: {{ review.storage_string }}</p>
+                  <p>Size: {{ review.size_string }}</p>
+                  <p>Bathroom: {{ review.bathroom_string }}</p>
+                  <p>Kitchen: {{ review.kitchen_string }}</p>
+                  <p>Light: {{ review.light_string  }}</p>
+                  <p>Furniture: {{ review.furniture_string }}</p>
+                  <p>Noise disruptiveness: {{ review.noise_string }}</p>
+
+                  {% if review.comments %}
+                  <br>
+                  <p><b>Other comments:</b></p>
+                  <p>{{ review.comments }}</p>
+                  {% endif %}
+                  
+                  <!-- <p class="card-heading"> {{ review.year }}</p>
                   <p>Floor: <b>{{ review.storage }}</b></p>
                   <p>View: <b>{{ review.size }}</b></p>
                   <p>Type: <b>{{ review.bathroom }}</b></p>
                   <p>Bathroom: <b>{{ review.kitchen }}</b></p>
+
+                  <br>
+                  <p>{{ review.comment }}</p> -->
                 </div>
         {% endfor %}
 
         {% if reviews_v1.len == 0 %}
           <p>Sorry, no reviews for this room.</p>
         {% endif %}
-      </div>
 </div>

@@ -38,13 +38,18 @@ def view_staircase(request, staircase_name):
     feed_dict['by_floor'] = by_floor
     return render(request, "staircase.html", feed_dict)
 
+
 @login_required
 def view_room(request, room_name):
     feed_dict = {}
 
     room = models.Room.objects.get(name=room_name)
     reviews = room.review_v1_set.all()
-    print(reviews)
+    
+    for review in reviews:
+        review.annotate()
+    
+    reviews = sorted(reviews, key=lambda x: x.year, reverse=True)
 
     feed_dict['room'] = room
     feed_dict['reviews_v1'] = reviews
