@@ -67,6 +67,6 @@ nav .nav-title {
 
 /* Map */
 
-.building {
+.building, .room-list {
   margin: 40px 0;
 }

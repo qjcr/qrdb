@@ -1,0 +1,22 @@
+{% include "includes/header.html" %}
+{% include "includes/navbar.html" %}
+
+<div class="content-wrapper">
+
+    <div class="room-list">
+      <h2>Staircase {{ staircase.name}} </h2>
+        <div class="card-group">
+          {% for room in rooms %}
+            <a href="/room/{{ room.name }}">
+              <div class="card-wrapper">
+                <p class="card-heading"> {{ room.name }}</p>
+                <p>Floor: <b>{{ room.floor }}</b></p>
+                <p>View: <b>{{ room.view }}</b></p>
+                <p>Type: <b>{{ room.room_type }}</b></p>
+                <p>Bathroom: <b>{{ room.bathroom }}</b></p>
+              </div>
+            </a>
+            {% endfor %}
+        </div>
+      </div>
+</div>
