@@ -4,19 +4,22 @@
 <div class="content-wrapper">
 
     <div class="room-list">
-      <h2>Staircase {{ staircase.name}} </h2>
-        <div class="card-group">
-          {% for room in rooms %}
-            <a href="/room/{{ room.name }}">
-              <div class="card">
-                <p class="card-heading"> {{ room.name }}</p>
-                <p>Floor: <b>{{ room.floor }}</b></p>
-                <p>View: <b>{{ room.view }}</b></p>
-                <p>Type: <b>{{ room.room_type }}</b></p>
-                <p>Bathroom: <b>{{ room.bathroom }}</b></p>
-              </div>
-            </a>
-            {% endfor %}
-        </div>
+      <h2>{{ staircase.name }} Staircase</h2>
+        {% for floor_name, rooms in by_floor %}
+          <h3>{{ floor_name }}</h3>
+          <div class="card-group">
+            {% for room in rooms %}
+              <a href="/room/{{ room.name }}">
+                <div class="card">
+                  <p class="card-heading"> {{ room.name }}</p>
+                  <p>Floor: <b>{{ room.floor }}</b></p>
+                  <p>View: <b>{{ room.view }}</b></p>
+                  <p>Type: <b>{{ room.room_type }}</b></p>
+                  <p>Bathroom: <b>{{ room.bathroom }}</b></p>
+                </div>
+              </a>
+              {% endfor %}
+          </div>
+        {% endfor %}
       </div>
 </div>

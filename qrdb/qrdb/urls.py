@@ -25,5 +25,5 @@ urlpatterns = [
     path('', views.index),
     path('map/', views.view_map),
     path('staircase/<str:staircase_name>', views.view_staircase),
-    # path('room/<str:room_name>', views.view_room),
+    path('room/<str:room_name>', views.view_room),
 ]

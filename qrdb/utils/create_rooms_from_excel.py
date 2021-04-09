@@ -72,6 +72,7 @@ for i, row in df.iterrows():
     # They can be removed if you would like other room types/bathroom types to be supported, and the front-end will still work.
     assert room_type in ['Twin', 'Bedroom', 'Set'], f"Invalid room type value {room_type} for room {r}"
     assert bathroom in ['En-suite', 'Shared', 'Private'], f"Invalid bathroom value {bathroom} for room {r}"
+    assert floor in ['G', '1', '2', '3', '4'], f"Invalid floor value {floor} for room {r}"
 
     floors.add(floor)
     views.add(view)
