@@ -7,11 +7,15 @@
       <h2>{{ room.name }}</h2>
 
       <h3>Reviews</h3>
-      <hr>
+      <i>There are no recent reviews for this room. Maybe you'll be the first?</i>
+      <br>
+      <br>
+      <h3>Old Reviews</h3>
+      <p><i>These reviews come from Queens' Quarters, the QJCR's old room database from many years ago. Note that they may be out of date.</i></p>
         {% for review in reviews_v1 %}
           <div class="review">
             <div class="card">
-              <p class="card-heading">Resident {{ review.year }}</p>
+              <p class="card-heading">Resident {{ review.year|add:"-1" }}-{{ review.year }}</p>
               <p>Storage: {{ review.storage_string }}</p>
               <p>Size: {{ review.size_string }}</p>
               <p>Bathroom: {{ review.bathroom_string }}</p>
@@ -42,3 +46,5 @@
           <p>Sorry, no reviews for this room.</p>
         {% endif %}
 </div>
+
+{% include "includes/footer.html" %}

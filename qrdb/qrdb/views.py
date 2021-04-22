@@ -54,3 +54,18 @@ def view_room(request, room_name):
     feed_dict['room'] = room
     feed_dict['reviews_v1'] = reviews
     return render(request, "room.html", feed_dict)
+
+from formtools.wizard.views import SessionWizardView
+from django.core.files.storage import FileSystemStorage
+from . import forms, settings
+import os
+
+class AddReviewWizard(SessionWizardView):
+    form_list = [forms.AddReviewForm1, forms.AddReviewForm2, forms.AddReviewForm3]
+    template_name = 'form.html'
+
+    # NOTE: These files may accumulate over time
+    file_storage = FileSystemStorage(location=os.path.join(settings.MEDIA_ROOT, 'tmp'))
+    def done(self, form_list, **kwargs):
+        print('wizard!!!o')
+        return redirect('/')

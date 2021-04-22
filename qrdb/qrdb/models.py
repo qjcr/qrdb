@@ -83,14 +83,58 @@ class Review_v1(models.Model):
         # unique_together = ('crsid', 'room')
 
 # New reviews
-# class Review_v2(models.Model):
+class Review_v2(models.Model):
 #     user = models.ForeignKey(User, on_delete=models.PROTECT)
-#     year = models.ForeignKey(Year, on_delete=models.PROTECT)
-#     room = models.ForeignKey(Room, on_delete=models.PROTECT)
-#     year 
+    crsid = models.CharField(max_length=20)
+    # year = models.ForeignKey(Year, on_delete=models.PROTECT)
+    year = models.CharField(max_length=20)
+    room = models.ForeignKey(Room, on_delete=models.PROTECT)
 
-#     # todo...
-#     class Meta:
-#         unique_together = ('crsid', 'room')
+    # Room rating sliders
+    room_rating_overall = models.IntegerField()
+    room_rating_light = models.IntegerField()
+    room_rating_view = models.IntegerField()
+    room_rating_noise = models.IntegerField()
+    room_rating_size = models.IntegerField()
+    room_rating_storage = models.IntegerField()
+    room_rating_bathroom = models.IntegerField()
+    room_rating_heating = models.IntegerField()
+    room_rating_repair = models.IntegerField()
+    room_rating_desk = models.IntegerField()
 
+    # How many people shared this bathroom?
+    bathroom_sharing = models.IntegerField(blank=True)
 
+    room_tips = models.TextField(blank=True)
+    room_review = models.TextField(blank=True)
+
+    # NOTE: This is for JCR/College, not for public view
+    room_feedback = models.TextField(blank=True)
+
+    gyp_rating = models.IntegerField()
+    # 1-4, annotated with: never, rarely, usually, almost always, always
+    gyp_cooking_space = models.IntegerField()
+    gyp_fridge_space = models.IntegerField()
+    gyp_cupboard_space = models.IntegerField()
+
+    # 0-2, annotated with: [Yes, No, No but I want one]
+    freezer = models.IntegerField(blank=True)
+
+    gyp_sharing = models.IntegerField(blank=True)
+
+    gyp_usage = models.IntegerField(blank=True)
+    gyp_review = models.TextField()
+
+    # NOTE: Once again private
+    gyp_feedback = models.TextField()
+
+    class Meta:
+        unique_together = ('crsid', 'room', 'year')
+
+class ReviewImage(models.Model):
+    review = models.ForeignKey(Review_v2, on_delete=models.CASCADE) # !!!
+    # image = models.ImageField(upload_to='images/')
+
+    # We store images in the database (max size 250KB)
+    # This may be a bad decision for performance, but it makes the DB very portable
+    image = models.BinaryField(max_length=256_000)
