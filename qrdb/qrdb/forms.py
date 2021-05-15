@@ -1,5 +1,11 @@
 from django import forms
-from . import CONFIG
+from . import CONFIG, models
+
+
+class ReviewForm(forms.ModelForm):
+    class Meta:
+        model = models.Review_v2
+        exclude = ("crsid",)
 
 class AddReviewForm1(forms.Form):
     room_number = forms.CharField(max_length=10)
