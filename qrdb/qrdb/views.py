@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.views import generic
 
 from . import models
 
@@ -54,6 +55,26 @@ def view_room(request, room_name):
     feed_dict['room'] = room
     feed_dict['reviews_v1'] = reviews
     return render(request, "room.html", feed_dict)
+
+class AddReviewView(generic.TemplateView):
+    template_name = "addreview.html"
+
+    def get_context_data(self, **kwargs):
+        return {
+            "rooms": models.Room.objects.values("name")
+        }
+
+    def post(self, request):
+        # TODO: handle uploaded files
+        form = forms.ReviewForm(request.POST)
+        if not form.is_valid():
+            # TODO: display these errors
+            print(form.errors)
+            return self.get(request)
+        # TODO: save review to database with current user
+        # form.save()
+        # TODO: redirect somewhere, maybe with flash message?
+        return HttpResponse("yay!")
 
 from formtools.wizard.views import SessionWizardView
 from django.core.files.storage import FileSystemStorage

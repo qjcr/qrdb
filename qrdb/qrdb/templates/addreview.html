@@ -1,0 +1,184 @@
+{% load static %}
+
+{% include "includes/header.html" %}
+{% include "includes/navbar.html" %}
+
+<link rel="stylesheet" href="{% static "css/addreview.css" %}">
+
+<div class="content-wrapper">
+    <form method="post">
+        {% csrf_token %}
+
+        <h1 id="page-title">Add Review</h1>
+
+        <section data-title="Add Review">
+            <p>
+                <label for="room">What was your room number? (eg. EE4, W8, K12)</label>
+                <input type="text" list="rooms" id="room" name="room"/>
+                <datalist id="rooms">
+                    {% for room in rooms %}<option value="{{ room.name }}">{% endfor %}
+                </datalist>
+            </p>
+
+            <p>
+                <label>Year of occupancy</label>
+                <input type="radio" id="2019" name="year" value="2019">
+                <label for="2019">2019-2020 (current)</label><br>
+                <input type="radio" id="2018" name="year" value="2018">
+                <label for="2018">2018-2019</label><br>
+                <input type="radio" id="2017" name="year" value="2017">
+                <label for="2017">2017-2018</label><br>
+                <input type="radio" id="2016" name="year" value="2016">
+                <label for="2016">2016-2017</label>
+            </p>
+        </section>
+
+        <section data-title="Add Review - Your Room" style="display: none">
+            <p>
+                <label>Rate your room<br><em>(1 = Awful, 10 = Amazing)</em></label>
+            </p>
+
+            <p class="slider-grid">
+                <label for="room_rating_overall">Overall</label>
+                <input type="range" min="1" max="10" id="room_rating_overall" name="room_rating_overall">
+                <label for="room_rating_light">Natural Light</label>
+                <input type="range" min="1" max="10" id="room_rating_light" name="room_rating_light">
+                <label for="room_rating_view">View</label>
+                <input type="range" min="1" max="10" id="room_rating_view" name="room_rating_view">
+                <label for="room_rating_noise">(Lack of) Noise</label>
+                <input type="range" min="1" max="10" id="room_rating_noise" name="room_rating_noise">
+                <label for="room_rating_size">Size</label>
+                <input type="range" min="1" max="10" id="room_rating_size" name="room_rating_size">
+                <label for="room_rating_storage">Storage</label>
+                <input type="range" min="1" max="10" id="room_rating_storage" name="room_rating_storage">
+                <label for="room_rating_bathroom">Bathroom</label>
+                <input type="range" min="1" max="10" id="room_rating_bathroom" name="room_rating_bathroom">
+                <label for="room_rating_heating">Heating/Temp</label>
+                <input type="range" min="1" max="10" id="room_rating_heating" name="room_rating_heating">
+                <label for="room_rating_repair">State of repair</label>
+                <input type="range" min="1" max="10" id="room_rating_repair" name="room_rating_repair">
+                <label for="room_rating_desk">Desk size</label>
+                <input type="range" min="1" max="10" id="room_rating_desk" name="room_rating_desk">
+            </p>
+
+            <p>
+                <label for="bathroom_sharing">How many did you share your bathroom with? (roughly)<br><em>Enter '1' for
+                    en-suite/private bathroom</em></label>
+                <input type="number" id="bathroom_sharing" name="bathroom_sharing">
+            </p>
+
+            <p>
+                <label for="files">Do you have any photos (or videos?) of your room?<br><em>Completely optional! People
+                    who get your room in future years (or who want to browse rooms) might find these photos useful</em></label>
+                <input type="file" id="files" name="files" multiple data-file-display="file-display" accept="image/*,video/*">
+            </p>
+            <p id="file-display"></p>
+
+            <p>
+                <label for="room_tips">Any tips for the person staying in your room next year?<br><em>For example: Bring an
+                    extension lead/your own lamp/longer ethernet cable - or perhaps that they should try swapping the
+                    bed and desk positions?</em></label>
+                <textarea rows="4" id="room_tips" name="room_tips"></textarea>
+            </p>
+
+            <p>
+                <label for="room_review">Review: What was good and bad about your room?<br><em>Feel free to make this as
+                    short or long as possible (or say nothing at all)!</em></label>
+                <textarea rows="4" id="room_review" name="room_review"></textarea>
+            </p>
+
+            <p>
+                <label for="room_feedback">Feedback: Any issues/complaints/suggestions you have you want to let the JCR or
+                    the College know about?<br><em>The response to this question will not be available
+                        publicly</em></label>
+                <textarea rows="4" id="room_feedback" name="room_feedback"></textarea>
+            </p>
+        </section>
+
+        <section data-title="Add Review - Your Gyp" style="display: none">
+            <p>
+                <label for="gyp_rating">Rate your gyp room<br><em>(1 = Awful, 10 = Amazing)</em></label>
+                <input type="range" min="1" max="10" id="gyp_rating" name="gyp_rating">
+            </p>
+
+            <p>How often would you say you had enough space in your gyp?</p>
+
+            <p>
+                <label>Cooking space</label>
+                <input type="radio" id="gyp_cooking_space0" name="gyp_cooking_space" value="0">
+                <label for="gyp_cooking_space0">Never</label><br>
+                <input type="radio" id="gyp_cooking_space1" name="gyp_cooking_space" value="1">
+                <label for="gyp_cooking_space1">Rarely</label><br>
+                <input type="radio" id="gyp_cooking_space2" name="gyp_cooking_space" value="2">
+                <label for="gyp_cooking_space2">Usually</label><br>
+                <input type="radio" id="gyp_cooking_space3" name="gyp_cooking_space" value="3">
+                <label for="gyp_cooking_space3">Almost Always</label><br>
+                <input type="radio" id="gyp_cooking_space4" name="gyp_cooking_space" value="4">
+                <label for="gyp_cooking_space4">Always</label><br>
+            </p>
+            <p>
+                <label>Fridge space</label>
+                <input type="radio" id="gyp_fridge_space0" name="gyp_fridge_space" value="0">
+                <label for="gyp_fridge_space0">Never</label><br>
+                <input type="radio" id="gyp_fridge_space1" name="gyp_fridge_space" value="1">
+                <label for="gyp_fridge_space1">Rarely</label><br>
+                <input type="radio" id="gyp_fridge_space2" name="gyp_fridge_space" value="2">
+                <label for="gyp_fridge_space2">Usually</label><br>
+                <input type="radio" id="gyp_fridge_space3" name="gyp_fridge_space" value="3">
+                <label for="gyp_fridge_space3">Almost Always</label><br>
+                <input type="radio" id="gyp_fridge_space4" name="gyp_fridge_space" value="4">
+                <label for="gyp_fridge_space4">Always</label><br>
+            </p>
+            <p>
+                <label>Cupboard space</label>
+                <input type="radio" id="gyp_cupboard_space0" name="gyp_cupboard_space" value="0">
+                <label for="gyp_cupboard_space0">Never</label><br>
+                <input type="radio" id="gyp_cupboard_space1" name="gyp_cupboard_space" value="1">
+                <label for="gyp_cupboard_space1">Rarely</label><br>
+                <input type="radio" id="gyp_cupboard_space2" name="gyp_cupboard_space" value="2">
+                <label for="gyp_cupboard_space2">Usually</label><br>
+                <input type="radio" id="gyp_cupboard_space3" name="gyp_cupboard_space" value="3">
+                <label for="gyp_cupboard_space3">Almost Always</label><br>
+                <input type="radio" id="gyp_cupboard_space4" name="gyp_cupboard_space" value="4">
+                <label for="gyp_cupboard_space4">Always</label><br>
+            </p>
+
+            <p>
+                <input type="checkbox" id="freezer" name="freezer">
+                <label for="freezer">Did you have access to a freezer?</label>
+            </p>
+
+            <p>
+                <label for="gyp_sharing">How many did you share your gyp with? (roughly)</label>
+                <input type="number" id="gyp_sharing" name="gyp_sharing">
+            </p>
+
+            <p>
+                <label for="gyp_usage">How often did you use your gyp?<br><em>(1 = Never, 10 = Always)</em></label>
+                <input type="range" min="1" max="10" id="gyp_usage" name="gyp_usage">
+            </p>
+
+            <p>
+                <label for="gyp_review">Review: Review: What was good and bad about your gyp?<br><em>Feel free to skip
+                    this one if you don't have strong feelings about your gyp :)</em></label>
+                <textarea rows="4" id="gyp_review" name="gyp_review"></textarea>
+            </p>
+
+            <p>
+                <label for="gyp_feedback">Feedback: Any issues/complaints/suggestions you have you want to let the JCR
+                    or the College know about?<br><em>The response to this question will not be available
+                        publicly</em></label>
+                <textarea rows="4" id="gyp_feedback" name="gyp_feedback"></textarea>
+            </p>
+        </section>
+
+        <div id="buttons">
+            <button id="previous" disabled>&leftarrow; Previous</button>
+            <button id="next">Next &rightarrow;</button>
+        </div>
+    </form>
+</div>
+
+<script src="{% static "js/addreview.js" %}"></script>
+
+{% include "includes/footer.html" %}
