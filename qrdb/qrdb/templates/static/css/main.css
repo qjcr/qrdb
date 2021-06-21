@@ -110,6 +110,10 @@ nav .nav-right {
   color: #212529;
 }
 
+.card-no-reviews {
+  border-top: #adadad 4px solid !important;
+}
+
 .card p {
   margin: 0;
   font-size: 1rem;
@@ -128,6 +132,12 @@ nav .nav-right {
 /* Room */
 .review {
   margin: 20px 0;
+}
+
+.footer-text {
+  margin-top: 64px;
+  color: 999999;
+  text-align: center;
 }
 
 /* Staircase */

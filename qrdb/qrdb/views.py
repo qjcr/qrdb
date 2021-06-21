@@ -24,8 +24,7 @@ def view_staircase(request, staircase_name):
 
     rooms = staircase.room_set.all()
     by_floor = []
-    # TODO: Move to config file
-    floor_names = [('G', 'Ground Floor'), ('1', '1st Floor'), ('2', '2nd Floor'), ('3', '3rd Floor'), ('4', '4th Floor')]
+    floor_names = CONFIG.FLOOR_NAMES
     floors = [f for f, _ in floor_names]
     for f, name in floor_names:
         floor_rooms = [r for r in rooms if r.floor == f]
@@ -61,8 +60,11 @@ def view_room(request, room_name):
         for f in review._meta.get_fields():
             if f.name.startswith("room_rating"):
                 value = CONFIG.RATING_CHOICES[f.value_from_object(review)]
-                ratings.append((f.name.split('_')[-1].capitalize(), value))
+                color = CONFIG.RATING_COLORS[value]
+                ratings.append((f.name.split('_')[-1].capitalize(), value, color))
         review.ratings_array = ratings
+
+    reviews_v2 = sorted(reviews_v2, key=lambda x: x.year, reverse=True)
 
     feed_dict['room'] = room
     feed_dict['reviews_v1'] = reviews

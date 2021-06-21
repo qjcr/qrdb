@@ -4,6 +4,9 @@
 <div class="content-wrapper">
 
     <div class="room-list">
+      <a href="/staircase/{{ room.staircase.name }}">🔙 Back to staircase</a>
+      <br><br>
+
       <h2>{{ room.name }}</h2>
 
       <h3>Reviews</h3>
@@ -14,15 +17,15 @@
         <div class="review">
           <div class="card">
             <p class="card-heading">Resident {{ review.year|add:"-1" }}-{{ review.year }}</p>
-            {% for key, value in review.ratings_array %}
-            <p>{{ key }}: {{ value }}</p>
+            {% for key, value, color in review.ratings_array %}
+            <p>{{ key }}: <b style="color: {{ color }};">{{ value }}</b></p>
             {% endfor %}
 
             {% if review.room_review %}
             <br>
             <p>{{ review.room_review|linebreaksbr }}</p>
             {% endif %}
-            {% if review.room_tips %}
+            {% if review.room_tips != 'nan' %}
             <br>
             <p><b>Tips:</b> {{ review.room_tips|linebreaksbr }}</p>
             {% endif %}

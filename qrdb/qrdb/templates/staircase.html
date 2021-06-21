@@ -8,9 +8,14 @@
         {% for floor_name, rooms in by_floor %}
           <h3>{{ floor_name }}</h3>
           <div class="card-group">
+
             {% for room in rooms %}
               <a href="/room/{{ room.name }}">
+                {% if room.get_review_v2_count == 0 %}
+                <div class="card card-no-reviews">
+                {% else %}
                 <div class="card">
+                {% endif %}
                   <p class="card-heading"> {{ room.name }}</p>
                   <p>Floor: <b>{{ room.floor }}</b></p>
                   <p>View: <b>{{ room.view }}</b></p>
@@ -18,16 +23,19 @@
                   <p>BR: <b>{{ room.bathroom }}</b></p>
 
                   <br>
-                  {% if room.get_review_count == 0 %}
-                  <p class="no-reviews">No reviews</p>
-                  {% elif room.get_review_count == 1 %}</p>
-                  <p>1 review {% if room.reviews_have_comments %}💬{% endif %}</p>
+                  {% if room.get_review_v2_count == 0 and room.get_review_count != 0 %}
+                  <p class="no-reviews">Old reviews only {% if room.reviews_have_comments %}💬{% endif %}</p>
+                  {% elif room.get_review_v2_count == 0 %}
+                  <p class="no-reviews">No reviews :(</p>
+                  {% elif room.get_review_v2_count == 1 %}</p>
+                  <p>1 recent review {% if room.reviews_have_comments %}💬{% endif %}{% if room.reviews_have_photos %}📷{% endif %}</p>
                   {% else %}
-                  <p>{{ room.get_review_count }} reviews {% if room.reviews_have_comments %}💬{% endif %}</p>
+                  <p>{{ room.get_review_v2_count }} recent reviews {% if room.reviews_have_comments %}💬{% endif %}{% if room.reviews_have_photos %}📷{% endif %}</p>
                   {% endif %}
                 </div>
               </a>
-              {% endfor %}
+            {% endfor %}
+
           </div>
         {% endfor %}
       </div>

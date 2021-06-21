@@ -30,6 +30,14 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+from django.conf import settings
+from . import CONFIG
+
+def extra_template_context(request):
+    return {
+        "DEFAULT_FROM_EMAIL": CONFIG,
+    }
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -101,6 +109,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'qrdb.settings.extra_template_context',
             ],
         },
     },

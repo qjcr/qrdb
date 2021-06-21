@@ -3,8 +3,13 @@
 AVAILABLE_YEARS = ['2020-2021', '2019-2020', '2018-2019']
 
 RATING_CHOICES = ['Awful', 'Poor', 'Adequate', 'Good', 'Amazing']
+RATING_COLORS = {'Awful': '#a63700', 'Poor': "#e6cf25", 'Adequate': "#93ab2b", "Good": "#4fab1a", "Amazing": "#149c10"}
+
+FLOOR_NAMES = [('G', 'Ground Floor'), ('1', '1st Floor'), ('2', '2nd Floor'), ('3', '3rd Floor'), ('4', '4th Floor')]
 
 # Not used (they were in the incomplete form implementation)
 GYP_FREQUENCY_CHOICES = ['Never', 'Rarely', 'Usually', 'Almost always', 'Always']
 ENABLE_GYP_FREEZER_QUESTION = True
 GYP_FREEZER_QUESTION_CHOICES = ['Yes (eg. fridge had a freezer compartment)', 'No', 'No, but I really wish I did']
+
+CONTACT_EMAIL = 'jcr-accommodatio'

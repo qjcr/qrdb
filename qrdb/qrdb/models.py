@@ -22,11 +22,16 @@ class Room(models.Model):
     bathroom = models.CharField(max_length=25, blank=True) # One of ['Shared', 'En-suite', 'Private']
 
     def get_review_count(self):
-        # TODO: Update this for reviews v2
-        return len(self.review_v1_set.all())
+        return len(self.review_v1_set.all()) + len(self.review_v2_set.all())
+
+    def get_review_v2_count(self):
+        return len(self.review_v2_set.all())
 
     def reviews_have_comments(self):
-        return any([r.comments for r in self.review_v1_set.all()])
+        return any([r.comments for r in self.review_v1_set.all()]) or any([r.room_review for r in self.review_v2_set.all()])
+
+    def reviews_have_photos(self):
+        return any([r.reviewimage_set.count() for r in self.review_v2_set.all()])
 
 # Not currently used for reviews, we just have crsid string
 class User(models.Model):
