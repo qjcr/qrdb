@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.views import generic
 
-from . import models
+from . import models, CONFIG
 
 def index(request):
     return render(request, "index.html")
@@ -51,9 +51,22 @@ def view_room(request, room_name):
         review.annotate()
     
     reviews = sorted(reviews, key=lambda x: x.year, reverse=True)
+    
+
+    reviews_v2 = room.review_v2_set.all()
+
+    for review in reviews_v2:
+        # Create array of attributes
+        ratings = []
+        for f in review._meta.get_fields():
+            if f.name.startswith("room_rating"):
+                value = CONFIG.RATING_CHOICES[f.value_from_object(review)]
+                ratings.append((f.name.split('_')[-1].capitalize(), value))
+        review.ratings_array = ratings
 
     feed_dict['room'] = room
     feed_dict['reviews_v1'] = reviews
+    feed_dict['reviews_v2'] = reviews_v2
     return render(request, "room.html", feed_dict)
 
 @login_required
