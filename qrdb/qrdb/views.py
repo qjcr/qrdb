@@ -56,6 +56,12 @@ def view_room(request, room_name):
     feed_dict['reviews_v1'] = reviews
     return render(request, "room.html", feed_dict)
 
+@login_required
+def view_image(request, image_id):
+    image = models.ReviewImage.objects.get(id=image_id)
+
+    return HttpResponse(image.image, content_type="image/jpeg")
+
 class AddReviewView(generic.TemplateView):
     template_name = "addreview.html"
 
@@ -67,6 +73,7 @@ class AddReviewView(generic.TemplateView):
     def post(self, request):
         # TODO: handle uploaded files
         form = forms.ReviewForm(request.POST)
+        print(request.POST)
         if not form.is_valid():
             # TODO: display these errors
             print(form.errors)

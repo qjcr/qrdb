@@ -27,5 +27,6 @@ urlpatterns = [
     path('map/', views.view_map),
     path('staircase/<str:staircase_name>', views.view_staircase),
     path('room/<str:room_name>', views.view_room),
+    path('image/<int:image_id>', views.view_image),
     path('add_review', views.AddReviewView.as_view())
 ]

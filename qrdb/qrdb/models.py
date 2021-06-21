@@ -28,6 +28,7 @@ class Room(models.Model):
     def reviews_have_comments(self):
         return any([r.comments for r in self.review_v1_set.all()])
 
+# Not currently used for reviews, we just have crsid string
 class User(models.Model):
     crsid = models.CharField(max_length=10, primary_key=True)
     name = models.CharField(max_length=50)
@@ -87,23 +88,28 @@ class Review_v2(models.Model):
 #     user = models.ForeignKey(User, on_delete=models.PROTECT)
     crsid = models.CharField(max_length=20)
     # year = models.ForeignKey(Year, on_delete=models.PROTECT)
+    # Year is the _last_ year, so 2019-2020 is in the DB as 2020
     year = models.CharField(max_length=20)
     room = models.ForeignKey(Room, on_delete=models.PROTECT)
+    hash_id = models.CharField(max_length=100) # Prevents duplicate reviews, generate this somehow while updating database
 
     # Room rating sliders
     room_rating_overall = models.IntegerField()
     room_rating_light = models.IntegerField()
     room_rating_view = models.IntegerField()
-    room_rating_noise = models.IntegerField()
+    room_rating_quiet = models.IntegerField()
     room_rating_size = models.IntegerField()
     room_rating_storage = models.IntegerField()
     room_rating_bathroom = models.IntegerField()
     room_rating_heating = models.IntegerField()
     room_rating_repair = models.IntegerField()
-    room_rating_desk = models.IntegerField()
+    room_rating_furniture = models.IntegerField()
+    room_rating_gyp = models.IntegerField()
+    room_rating_wifi = models.IntegerField()
 
     # How many people shared this bathroom?
     bathroom_sharing = models.IntegerField(blank=True)
+    gyp_sharing = models.IntegerField(blank=True)
 
     room_tips = models.TextField(blank=True)
     room_review = models.TextField(blank=True)
@@ -111,22 +117,22 @@ class Review_v2(models.Model):
     # NOTE: This is for JCR/College, not for public view
     room_feedback = models.TextField(blank=True)
 
-    gyp_rating = models.IntegerField()
-    # 1-4, annotated with: never, rarely, usually, almost always, always
-    gyp_cooking_space = models.IntegerField()
-    gyp_fridge_space = models.IntegerField()
-    gyp_cupboard_space = models.IntegerField()
+    # gyp_rating = models.IntegerField()
+    # # 1-4, annotated with: never, rarely, usually, almost always, always
+    # gyp_cooking_space = models.IntegerField(blank=True)
+    # gyp_fridge_space = models.IntegerField(blank=True)
+    # gyp_cupboard_space = models.IntegerField(blank=True)
 
     # 0-2, annotated with: [Yes, No, No but I want one]
-    freezer = models.IntegerField(blank=True)
+    # freezer = models.IntegerField(blank=True)
 
-    gyp_sharing = models.IntegerField(blank=True)
+    # gyp_sharing = models.IntegerField(blank=True)
 
-    gyp_usage = models.IntegerField(blank=True)
-    gyp_review = models.TextField()
+    # gyp_usage = models.IntegerField(blank=True)
+    # gyp_review = models.TextField(blank=True)
 
     # NOTE: Once again private
-    gyp_feedback = models.TextField()
+    # gyp_feedback = models.TextField(blank=True)
 
     class Meta:
         unique_together = ('crsid', 'room', 'year')

@@ -7,7 +7,12 @@
       <h2>{{ room.name }}</h2>
 
       <h3>Reviews</h3>
+      {% if no_new_reviews %}
       <i>There are no recent reviews for this room. Maybe you'll be the first?</i>
+      {% else %}
+        {% for review in reviews_v2 %}
+          
+        {% endfor %}
       <br>
       <br>
       <h3>Old Reviews</h3>
