@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.views import generic
+import time
 
 from . import models, CONFIG
 
@@ -14,7 +15,6 @@ def index(request):
 
 @login_required
 def view_map(request):
-    print(request.user)
     feed_dict = {}
     feed_dict['buildings'] = models.Building.objects.all()
     return render(request, "map.html", feed_dict)
@@ -23,7 +23,6 @@ def view_map(request):
 def view_staircase(request, staircase_name):
     feed_dict = {}
 
-    print(staircase_name)
     staircase = models.Staircase.objects.get(name=staircase_name)
 
     rooms = staircase.room_set.all()
@@ -38,7 +37,6 @@ def view_staircase(request, staircase_name):
     assert len([r for r in rooms if r.floor not in floors]) == 0, f"Some rooms in staircase {staircase_name} have unknown floor!"
 
     feed_dict['staircase'] = staircase
-    feed_dict['rooms'] = staircase.room_set.all() 
     feed_dict['by_floor'] = by_floor
     return render(request, "staircase.html", feed_dict)
 
@@ -81,6 +79,7 @@ def view_image(request, image_id):
 
     return HttpResponse(image.image, content_type="image/jpeg")
 
+# Adding reviews not currently supported
 class AddReviewView(generic.TemplateView):
     template_name = "addreview.html"
 

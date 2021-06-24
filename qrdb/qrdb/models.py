@@ -1,4 +1,5 @@
 from django.db import models
+from functools import cache
 
 # Buildings -> Staircase -> Room -> Review <- User
 class Building(models.Model):
@@ -21,15 +22,22 @@ class Room(models.Model):
 
     bathroom = models.CharField(max_length=25, blank=True) # One of ['Shared', 'En-suite', 'Private']
 
+    # cache means these answers are memoized - speeding up performance
+    # This assumes room reviews do not change while running - this is currently true since we dont add reviews through the system
+
+    @cache
     def get_review_count(self):
         return len(self.review_v1_set.all()) + len(self.review_v2_set.all())
 
+    @cache
     def get_review_v2_count(self):
         return len(self.review_v2_set.all())
 
+    @cache
     def reviews_have_comments(self):
         return any([r.comments for r in self.review_v1_set.all()]) or any([r.room_review for r in self.review_v2_set.all()])
 
+    @cache
     def reviews_have_photos(self):
         return any([r.reviewimage_set.count() for r in self.review_v2_set.all()])
 
