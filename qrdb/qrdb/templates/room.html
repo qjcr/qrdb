@@ -10,7 +10,7 @@
       <h2>{{ room.name }}</h2>
 
       <h3>Reviews</h3>
-      {% if no_new_reviews %}
+      {% if reviews_v2|length == 0 %}
       <i>There are no recent reviews for this room. Maybe you'll be the first?</i>
       {% else %}
         {% for review in reviews_v2 %}
@@ -40,6 +40,7 @@
       {% endif %}
       <br>
       <br>
+      {% if reviews_v1 %}
       <h3>Old Reviews</h3>
       <p><i>These reviews come from Queens' Quarters, the QJCR's old room database from many years ago. Note that they may be out of date.</i></p>
         {% for review in reviews_v1 %}
@@ -71,10 +72,7 @@
             </div>
           </div>
         {% endfor %}
-
-        {% if reviews_v1|length == 0 %}
-          <p>Sorry, no reviews for this room.</p>
-        {% endif %}
+      {% endif %}
 </div>
 
 {% include "includes/footer.html" %}
