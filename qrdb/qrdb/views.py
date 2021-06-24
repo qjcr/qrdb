@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.views import generic
+from django.views.decorators.cache import cache_control
 import time
 
 from . import models, CONFIG
@@ -74,6 +75,7 @@ def view_room(request, room_name):
     return render(request, "room.html", feed_dict)
 
 @login_required
+@cache_control(max_age=86400)
 def view_image(request, image_id):
     image = models.ReviewImage.objects.get(id=image_id)
 
