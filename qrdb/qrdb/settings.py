@@ -35,7 +35,7 @@ from . import CONFIG
 
 def extra_template_context(request):
     return {
-        "DEFAULT_FROM_EMAIL": CONFIG,
+        "CONFIG": CONFIG,
     }
 
 # Application definition

@@ -13,3 +13,7 @@ ENABLE_GYP_FREEZER_QUESTION = True
 GYP_FREEZER_QUESTION_CHOICES = ['Yes (eg. fridge had a freezer compartment)', 'No', 'No, but I really wish I did']
 
 CONTACT_EMAIL = 'jcr-accommodatio'
+
+# Analytics, using plausible.js
+USE_PLAUSIBLE = True
+PLAUSIBLE_SRC = "https://stats.mxbi.net/js/pla.js"
