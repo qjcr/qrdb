@@ -63,7 +63,7 @@ for i, row in df.iterrows():
     #     r = r[:-1]
     #     shared = True
 
-    floor = row['Floor']
+    floor = str(row['Floor'])
     view = row['View']
     room_type = row['Room type']
     bathroom = row['Bathroom']
