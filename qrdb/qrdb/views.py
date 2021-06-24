@@ -6,7 +6,11 @@ from django.views import generic
 from . import models, CONFIG
 
 def index(request):
-    return render(request, "index.html")
+    feed_dict = {}
+    feed_dict['room_count'] = models.Room.objects.count()
+    feed_dict['review_count'] = models.Review_v1.objects.count() + models.Review_v2.objects.count()
+    feed_dict['photo_count'] = models.ReviewImage.objects.count()
+    return render(request, "index.html", feed_dict)
 
 @login_required
 def view_map(request):
