@@ -17,9 +17,12 @@
         <div class="review">
           <div class="card">
             <p class="card-heading">Resident {{ review.year|add:"-1" }}-{{ review.year }}</p>
-            {% for key, value, color in review.ratings_array %}
-            <p>{{ key }}: <b style="color: {{ color }};">{{ value }}</b></p>
-            {% endfor %}
+            
+            <div class="ratings">
+              {% for key, value, color in review.ratings_array %}
+              <p><span>{{ key }}:</span> <b style="color: {{ color }};">{{ value }}</b></p>
+              {% endfor %}
+            </div>
 
             {% if review.room_review %}
             <br>
@@ -31,9 +34,11 @@
             {% endif %}
 
             <br>
-            {% for image in review.reviewimage_set.all %}
-            <a href="/image/{{ image.id }}"><img style="height:150px" src="/image/{{ image.id }}"/></a>
-            {% endfor %}
+            <div class="review-gallery">
+              {% for image in review.reviewimage_set.all %}
+              <a href="/image/{{ image.id }}"><img style="height:150px" src="/image/{{ image.id }}"/></a>
+              {% endfor %}
+            </div>
           </div>
         </div>
         {% endfor %}
@@ -74,5 +79,7 @@
         {% endfor %}
       {% endif %}
 </div>
+
+<script>new SimpleLightbox({elements: '.review-gallery a'});</script>
 
 {% include "includes/footer.html" %}

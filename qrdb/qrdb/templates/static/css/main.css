@@ -15,6 +15,7 @@ h2 {
 .content-wrapper {
   width: 60vw;
   margin: auto;
+  min-height: 70vh;
 }
 
 @media screen and (max-width: 1200px) {
@@ -33,6 +34,21 @@ h2 {
   .content-wrapper {
     width: 90vw;
   }
+}
+
+/* Homepage */
+#homepage {
+  text-align: center;
+}
+
+#homepage > h1 {
+}
+
+#homepage > p > a {
+  text-decoration: underline;
+  color: #1a7d56;
+  font-weight: bold;
+
 }
 
 /* Navbar */
@@ -106,7 +122,7 @@ nav .nav-right {
   /* border: 1px #cccccc solid; */
   border-top: #1a7d56 4px solid;
   box-shadow: 0 0.5em 1em -0.125em rgba(10,10,10,0.1),0 0px 0 1px rgba(10,10,10,0.02);
-  padding: 10px 20px;
+  padding: 20px;
   color: #212529;
 }
 
@@ -122,6 +138,34 @@ nav .nav-right {
 .card .card-heading {
   font-weight: 700;
   font-size: 1.1rem;
+  border-bottom: 1px solid #bbb;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+}
+
+.ratings {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px 10px;
+}
+
+.ratings > p {
+}
+
+.ratings > p > span {
+  font-weight: bold;
+}
+
+@media screen and (max-width: 900px) {
+  .ratings {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .ratings {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
 
 /* Map */
@@ -138,6 +182,7 @@ nav .nav-right {
   margin-top: 64px;
   color: 999999;
   text-align: center;
+  padding: 20px;
 }
 
 /* Staircase */

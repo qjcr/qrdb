@@ -1,7 +1,7 @@
 {% include "includes/header.html" %}
 {% include "includes/navbar.html" %}
 
-<div class="content-wrapper">
+<div class="content-wrapper" id="homepage">
     <!-- <div style="margin: 0 auto;"></div> -->
         <!-- <div>
             Welcome to the Queens Room Database!
@@ -9,8 +9,8 @@
             <a href="/map">Click here to see the list of staircases</a>
         </div> -->
         <a href="/map"><img src="/static/hog2.png" style="width:50%; margin: 16px auto; display: block;"/></a>
-        <h1 style="display: block; margin: 0 auto; width:fit-content">Welcome to the Queens JCR Room Database</h1>
-        <a style="display: block; margin: 0 auto; width:fit-content" href="/map">Click here to see the list of staircases (raven login required)</a>
+        <h1>Welcome to the Queens JCR Room Database</h1>
+        <p><a href="/map">Click here to see the list of staircases (raven login required)</a></p>
 
         <br><br>
         <p style="display: block; margin: 0 auto; width:fit-content">{{ room_count }} rooms, {{ review_count }} reviews, {{ photo_count }} photos</p>

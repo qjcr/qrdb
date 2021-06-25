@@ -1,6 +1,8 @@
 {% load static %}
 
 <link href="{% static 'css/main.css' %}" rel="stylesheet" />
+<link href="{% static 'css/lightbox.min.css' %}" rel="stylesheet" />
+<script async src="{% static 'js/lightbox.min.js' %}"></script>
 {% if CONFIG.USE_PLAUSIBLE %}
 <script async defer data-domain="rooms.qjcr.org.uk" src="{{ CONFIG.PLAUSIBLE_SRC }}"></script>
 {% endif %}
