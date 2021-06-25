@@ -15,7 +15,7 @@
       {% else %}
         {% for review in reviews_v2 %}
         <div class="review">
-          <div class="card">
+          <div class="card card-review">
             <p class="card-heading">Resident {{ review.year|add:"-1" }}-{{ review.year }}</p>
             
             <div class="ratings">
@@ -50,7 +50,7 @@
       <p><i>These reviews come from Queens' Quarters, the QJCR's old room database from many years ago. Note that they may be out of date.</i></p>
         {% for review in reviews_v1 %}
           <div class="review">
-            <div class="card">
+            <div class="card card-review">
               <p class="card-heading">Resident {{ review.year|add:"-1" }}-{{ review.year }}</p>
               <p>Storage: {{ review.storage_string }}</p>
               <p>Size: {{ review.size_string }}</p>

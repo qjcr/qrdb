@@ -122,8 +122,12 @@ nav .nav-right {
   /* border: 1px #cccccc solid; */
   border-top: #1a7d56 4px solid;
   box-shadow: 0 0.5em 1em -0.125em rgba(10,10,10,0.1),0 0px 0 1px rgba(10,10,10,0.02);
-  padding: 20px;
+  padding: 10px 20px;
   color: #212529;
+}
+
+.card-review {
+  padding: 20px;
 }
 
 .card-no-reviews {
@@ -138,6 +142,9 @@ nav .nav-right {
 .card .card-heading {
   font-weight: 700;
   font-size: 1.1rem;
+}
+
+.card-review > .card-heading {
   border-bottom: 1px solid #bbb;
   margin-bottom: 10px;
   padding-bottom: 5px;
